@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sian Lopes | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary: #ff003c;
+      --medium-red: #ff003c;
+      --dark: #000;
+      --gray: #bbb;
+      --darker-gray: #888;
+      --light-border: rgba(255,255,255,0.1);
+      --section-bg: #111;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background-color: var(--dark);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+      line-height: 1.6;
+      padding-bottom: 100px;
+    }
+
+    h1, h2, h3, h4 {
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    section {
+      padding: 100px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Typing Animation */
+    .typing-container {
+      display: inline-block;
+      position: relative;
+    }
+
+    .typing-text {
+      display: inline;
+      color: var(--primary); /* Changed from transparent to solid color */
+      position: relative;
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1em;
+      background-color: var(--primary);
+      animation: blink 0.7s infinite;
+      position: absolute;
+      right: -5px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Hero Section */
+    .hero {
+      padding-top: 40px;
+      gap: 60px;
+      position: relative;
+    }
+
+    .hero-text {
+      max-width: 800px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .hero-text h1 span {
+      display: block;
+    }
+
+    .hero-text .name {
+      font-size: 3.5rem;
+      margin: 10px 0;
+      height: 4rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: var(--gray);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      border: 2px solid var(--primary);
+      background: transparent;
+      color: var(--primary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 30px;
+      font-weight: 600;
+    }
+
+    .btn:hover {
+      background-color: var(--primary);
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255, 0, 60, 0.3);
+    }
+
+    /* Frame Container - Made larger */
+    .frame-container {
+      position: relative;
+      width: 350px;
+      height: 475px;
+      margin-top: 60px;
+    }
+
+    /* Photo Frames - Removed borders and made larger */
+    .photo-frame {
+      width: 350px;
+      height: 475px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform-origin: center center;
+      border: none;
+    }
+
+    .photo-frame.straight {
+      background: linear-gradient(to bottom, var(--darker-gray), #333);
+      z-index: 1;
+    }
+
+    .photo-frame.tilted {
+      background: linear-gradient(to bottom, var(--primary), var(--dark));
+      z-index: 2;
+      transform: rotate(-8deg);
+    }
+
+    .frame-container:hover .photo-frame.tilted {
+      transform: rotate(0deg);
+    }
+
+    .photo-frame:hover {
+      transform: scale(1.05);
+      z-index: 3;
+    }
+
+    .profile-pic {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* About Section */
+    .about {
+      background-color: var(--dark);
+    }
+
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: var(--primary);
+    }
+
+    .about-content {
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .about p {
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    /* Cards Section */
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 60px 0;
+      max-width: 1200px;
+    }
+
+    .card {
+      background-color: var(--primary);
+      padding: 40px 30px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      flex: 1 1 300px;
+      max-width: 350px;
+      text-align: center;
+      color: white;
+    }
+
+    .card:hover {
+      background-color: var(--dark);
+      color: white;
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(255, 0, 60, 0.2);
+      border: 2px solid var(--primary);
+    }
+
+    .card h3 {
+      color: inherit;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover h3 {
+      color: var(--primary);
+    }
+
+    .card p {
+      color: inherit;
+      line-height: 1.6;
+      transition: all 0.3s ease;
+      opacity: 0.9;
+    }
+
+    /* Services Section */
+    .services {
+      background-color: var(--dark);
+    }
+
+    .services h2, .projects h2, .contact h2 {
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      color: var(--primary);
+    }
+
+    .service-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 1200px;
+    }
+
+    .service-item {
+      background-color: var(--primary);
+      padding: 40px 30px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      flex: 1 1 300px;
+      max-width: 350px;
+      text-align: center;
+      color: white;
+    }
+
+    .service-item:hover {
+      background-color: var(--dark);
+      color: white;
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(255, 0, 60, 0.2);
+      border: 2px solid var(--primary);
+    }
+
+    .service-item h3 {
+      color: inherit;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .service-item p {
+      color: inherit;
+      opacity: 0.9;
+    }
+
+    /* Projects Section */
+    .projects {
+      background-color: var(--dark);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .project-card {
+      background-color: var(--section-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(255, 0, 60, 0.3);
+    }
+
+    .project-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.1);
+    }
+
+    .project-info {
+      padding: 25px;
+    }
+
+    .project-info h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .project-info p {
+      color: var(--gray);
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .project-links a {
+      color: var(--primary);
+      text-decoration: none;
+      margin-right: 15px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .project-links a:hover {
+      color: #fff;
+    }
+
+    /* Contact Section */
+    .contact {
+      background-color: var(--dark);
+    }
+
+    .contact form {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .contact input, .contact textarea {
+      width: 100%;
+      margin: 15px 0;
+      padding: 15px;
+      background-color: var(--section-bg);
+      border: none;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .contact input:focus, .contact textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    .contact button {
+      padding: 15px 30px;
+      background-color: var(--primary);
+      color: #fff;
+      border: none;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 30px;
+      width: 100%;
+      max-width: 200px;
+    }
+
+    .contact button:hover {
+      background-color: #e60035;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255, 0, 60, 0.3);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      background-color: var(--dark);
+      color: var(--darker-gray);
+      border-top: 1px solid #222;
+    }
+
+    .social-links {
+      margin-top: 30px;
+    }
+
+    .social-links a {
+      color: var(--darker-gray);
+      font-size: 1.5rem;
+      margin: 0 15px;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--primary);
+      transform: translateY(-5px);
+    }
+
+    /* Floating Bottom Navbar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(30, 30, 30, 0.9);
+      border-radius: 50px;
+      padding: 10px 20px;
+      display: flex;
+      gap: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--light-border);
+    }
+
+    .nav-item {
+      color: #ccc;
+      font-size: 20px;
+      padding: 12px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-item:hover {
+      background: rgba(255, 0, 60, 0.2);
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .nav-item.active {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(255, 0, 60, 0.4);
+    }
+
+    /* Animations */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .animate {
+      animation: fadeIn 0.8s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      section {
+        padding: 80px 20px;
+      }
+      
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-text .name {
+        font-size: 2.5rem;
+        height: 3.5rem;
+      }
+      
+      .frame-container {
+        width: 300px;
+        height: 400px;
+      }
+      
+      .photo-frame {
+        width: 300px;
+        height: 400px;
+      }
+      
+      .cards, .service-list {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .card, .service-item {
+        max-width: 100%;
+        width: 100%;
+      }
+      
+      .bottom-nav {
+        padding: 8px 15px;
+        gap: 10px;
+        bottom: 10px;
+      }
+
+      .nav-item {
+        font-size: 18px;
+        padding: 10px;
+        width: 38px;
+        height: 38px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <h1>
+        <span>Hello, I'm</span>
+        <span class="name">
+          <span class="typing-container">
+            <span class="typing-text" id="typing-text"></span>
+            <span class="typing-cursor"></span>
+          </span>
+        </span>
+        <span class="profession">Web Developer</span>
+      </h1>
+      <p>Specializing in modern, responsive websites and web applications with cutting-edge technologies.</p>
+      <button class="btn" onclick="scrollToSection('about')">Get Started</button>
+    </div>
+    <div class="frame-container">
+      <div class="photo-frame straight"></div>
+      <div class="photo-frame tilted">
+        <img src="Sian.png" alt="Sian Lopes" class="profile-pic">
+      </div>
+    </div>
+  </section>
+  
+  <!-- About Section -->
+  <section class="about" id="about">
+    <h2>About Me</h2>
+    <div class="about-content">
+      <p>Hello! I'm Sian Lopes, a passionate web developer who loves turning ideas into digital reality. With a strong eye for design and detail, I specialize in building modern, fast, and user-friendly websites. Whether it's a single-page site or a complex app, I approach every project with creativity and purpose.</p>
+      <p>My journey in web development began 5 years ago, and since then I've worked with various technologies including HTML5, CSS3, JavaScript, React, and Node.js. I'm constantly learning and adapting to new trends in the ever-evolving web landscape.</p>
+      <p>When I'm not coding, you can find me exploring new design trends, contributing to open-source projects, or hiking in nature to recharge my creative energy.</p>
+    </div>
+    
+    <!-- Cards Section -->
+    <div class="cards">
+      <div class="card">
+        <h3>Future Vision</h3>
+        <p>I believe in bold design and smart solutions for building digital experiences that stand the test of time.</p>
+      </div>
+      <div class="card">
+        <h3>Product Design</h3>
+        <p>From wireframes to full UI, I bring designs to life with clean code and creative problem-solving.</p>
+      </div>
+      <div class="card">
+        <h3>Innovative Solutions</h3>
+        <p>Whether it's a website or a web app, I deliver modern, efficient results tailored to your needs.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <h2>Services</h2>
+    <div class="service-list">
+      <div class="service-item">
+        <h3>Web Design</h3>
+        <p>Creating beautiful, functional website designs</p>
+      </div>
+      <div class="service-item">
+        <h3>Front-end Development</h3>
+        <p>Building responsive, interactive user interfaces</p>
+      </div>
+      <div class="service-item">
+        <h3>Responsive Layouts</h3>
+        <p>Ensuring perfect display on all devices</p>
+      </div>
+      <div class="service-item">
+        <h3>UX/UI Design</h3>
+        <p>Crafting intuitive user experiences</p>
+      </div>
+      <div class="service-item">
+        <h3>JavaScript / React</h3>
+        <p>Developing dynamic web applications</p>
+      </div>
+      <div class="service-item">
+        <h3>Website Optimization</h3>
+        <p>Improving speed and performance</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Projects Section -->
+  <section class="projects" id="projects">
+    <h2>My Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-image">
+          <img src="Ecommerce.webp" alt="E-commerce Website">
+        </div>
+        <div class="project-info">
+          <h3>E-commerce Platform</h3>
+          <p>A fully responsive online store with cart functionality and secure checkout.</p>
+          <div class="project-links">
+            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="#"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">
+          <img src="Portfolio.avif" alt="Portfolio Template">
+        </div>
+        <div class="project-info">
+          <h3>Portfolio Template</h3>
+          <p>A customizable portfolio template for creatives and developers.</p>
+          <div class="project-links">
+            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="#"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">
+          <img src="Task.png" alt="Task Manager">
+        </div>
+        <div class="project-info">
+          <h3>Task Manager App</h3>
+          <p>A productivity app with drag-and-drop functionality and cloud sync.</p>
+          <div class="project-links">
+            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="#"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <h2>Contact Me</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+    &copy; 2025 Sian Lopes. All rights reserved.
+  </footer>
+
+  <!-- Floating Bottom Navbar -->
+  <div class="bottom-nav">
+    <a href="#home" class="nav-item active"><i class="fas fa-home"></i></a>
+    <a href="#about" class="nav-item"><i class="fas fa-user"></i></a>
+    <a href="#services" class="nav-item"><i class="fas fa-cog"></i></a>
+    <a href="#projects" class="nav-item"><i class="fas fa-book"></i></a>
+    <a href="#contact" class="nav-item"><i class="fas fa-envelope"></i></a>
+  </div>
+  
+  <script>
+    // Perfect Typing Animation
+    const text = "Sian Lopes";
+    const typingText = document.getElementById('typing-text');
+    let index = 0;
+    let isDeleting = false;
+    let isEnd = false;
+
+    function typeWriter() {
+      const currentText = text.substring(0, index);
+      typingText.innerHTML = currentText;
+      
+      if (!isDeleting && index === text.length) {
+        // Pause at end
+        isEnd = true;
+        setTimeout(() => {
+          isDeleting = true;
+          typeWriter();
+        }, 2000); // Increased pause before deleting
+        return;
+      }
+      
+      if (isDeleting && index === 0) {
+        // Reset after deleting
+        isDeleting = false;
+        isEnd = false;
+        setTimeout(typeWriter, 500);
+        return;
+      }
+      
+      // Update index
+      if (isEnd) {
+        index--;
+      } else if (isDeleting) {
+        index--;
+      } else {
+        index++;
+      }
+      
+      // Adjust speed
+      const speed = isDeleting ? 100 : 200; // Slower typing speed
+      setTimeout(typeWriter, speed);
+    }
+
+    // Start the typing animation after a brief delay
+    setTimeout(typeWriter, 1000);
+
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ 
+        behavior: 'smooth' 
+      });
+    }
+    
+    // Animation on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animate elements on scroll
+      const animateOnScroll = () => {
+        const elements = document.querySelectorAll('section h2, .about p, .card, .service-item, .project-card, .contact form, .social-links a');
+        
+        elements.forEach((element) => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.2;
+          
+          if (elementPosition < screenPosition) {
+            element.classList.add('animate');
+          }
+        });
+      };
+      
+      window.addEventListener('scroll', animateOnScroll);
+      animateOnScroll(); // Run once on load
+      
+      // Smooth scroll for navigation links
+      document.querySelectorAll('.bottom-nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId !== '#') {
+            document.querySelector(targetId).scrollIntoView({
+              behavior: 'smooth'
+            });
+            
+            // Update active state
+            document.querySelectorAll('.bottom-nav .nav-item').forEach(item => {
+              item.classList.remove('active');
+            });
+            this.classList.add('active');
+          }
+        });
+      });
+
+      // Update bottom nav active state on scroll
+      const sections = document.querySelectorAll('section');
+      const navItems = document.querySelectorAll('.bottom-nav .nav-item');
+      
+      window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          
+          if (pageYOffset >= (sectionTop - 300)) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        navItems.forEach(item => {
+          item.classList.remove('active');
+          if (item.getAttribute('href') === `#${current}`) {
+            item.classList.add('active');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
